@@ -3,7 +3,6 @@
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-      
         <style>
           body {
             margin: 0;
@@ -16,8 +15,8 @@
         <script src="https://unpkg.com/globe.gl"></script>
         <!-- <script src="../../dist/globe.gl.js"></script> -->
 
-        <link rel="stylesheet" href="./resources/style.css">
-        
+        <link rel="stylesheet" href="resources/style.css"> 
+        <script src="https://cdn.tailwindcss.com"></script>
     </head>
       
       <body>
@@ -26,7 +25,7 @@
         <div id="menu">
           <div class="panel">
           </div>
-          <div class="tops">
+          <div class="tops ">
             <h2 id="con" style="box-sizing: border-box; border-bottom: 2px solid white; font-size: 24px; color: white; cursor: pointer;">Timeline</h2>
             <h2 id="nak" style="box-sizing: border-box; font-size: 24px; color: white; cursor: pointer;">Nakamura</h2>
           </div>
@@ -36,26 +35,42 @@
         <!--MOONQUAKE MAP STARTS-->
 
         <div id="contdata">
-          <h1>Moonquake Map</h1>
-          <div class="doy" style="text-align: center;">
-            <h3>Year</h3>
-            <input id="yearslider" min="0" max="8" value="0" type="range" class="form-range" style="width: 80%;">
-            <div style="margin-top: 5px;">
-              <label id="yearlabel" for="customRange1" class="form-label">1969</label>
+          <div class="doy">
+            <h3>DATE: <label id="yearlabel" for="customRange1">1969</label> /  <label id="monthlabel" for="customRange1">Jan</label> /  <label id="daylabel" for="customRange1" >1</label></h3>
+            <div class="years">
+              <div class="head">
+                <h3 class="text-left py-2 px-4">Year </h3>
+              </div>
+              <input id="yearslider" min="0" max="8" value="0" type="range" class="range" style="width: 80%;">
+              <div style="margin-top: 5px;">
+               
+            </div>
+            
+          
             </div>
 
-            <h3>Month</h3>
-            <input id="monthslider" min="0" max="11" value="0" type="range" class="form-range" style="width: 80%;">
+            <div class="months">
+             <div class="head">
+              <h3 class="text-left py-4 px-4">Month</h3>
+            
+             </div>
+            <input id="monthslider" min="0" max="11" value="0" type="range" class="range" style="width: 80%;">
             <div style="margin-top: 5px;">
-              <label id="monthlabel" for="customRange1" class="form-label">Jan</label>
+             
+            </div>
             </div>
 
-            <h3>Day</h3>
-            <input id="dayslider" min="1" max="30" value="1" type="range" class="form-range" style="width: 80%;">
-            <div style="margin-top: 5px;">
-              <label id="daylabel" for="customRange1" class="form-label">1</label>
+          <div class="days">
+            <div class="head">
+              <h3 class="text-left py-4 px-4">Day</h3>
+           
             </div>
-
+            <input id="dayslider" min="1" max="30" value="1" type="range" class="range" style="width: 80%;">
+            <div style="margin-top: 5px;">
+             
+          </div>
+            </div>
+             
             <button id="getData">Show Data</button>
 
           </div>
@@ -64,8 +79,7 @@
 
         <!--NAKAMULA SEISMIC EVENTS STARTS-->
         <div id="nakamura">
-          <h1 style="font-size: 30px; font-weight: bold; color: white; text-align: center; margin: 8px 0 8px 0;">Nakamura Seismic Events</h1>
-          <div id="naklabels">
+        <div id="naklabels">
             <div nakNum="0" id="nak">
               <h3 class="nakEvent">1971, 17 April</h3>
             </div>

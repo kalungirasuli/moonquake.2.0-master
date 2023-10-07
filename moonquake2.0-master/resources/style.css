@@ -1,8 +1,11 @@
-*{
-    overflow: hidden;
+  @font-face {
+        font-family: "Fira Code";
+        src: url("./fonts/FiraCode-VariableFont_wght.ttf")
+          format("truetype");
+        
+      }
 
-}
-.nakEvent {
+ .nakEvent {
     border-radius: 5px;
     border: 2px solid white;
     padding: 4px 8px 4px 8px;
@@ -11,7 +14,7 @@
     margin: 0 auto;
     font-size: 24px;
     color: white;
-}
+} 
 
 .nakEvent:hover {
 
@@ -33,7 +36,7 @@
     font-weight: bold;
     text-align: center;
     font-size: 25px;
-    color: white
+    color: rgb(83, 72, 72)3, 72, 72)3, 72, 72)
 }
 
 #clearMap {
@@ -65,20 +68,10 @@
     padding:1rem;
     justify-content: space-between; 
     align-items: center;
-    border-radius:12px;
     height: 100%; 
     width:280px; 
     text-align: center;
-    border:inherit;
-    background:linear-gradient(rgba(0,0,0.6),rgb(11, 32, 39));
-    background-position:center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    box-shadow:
-    0 2px 2.3px rgba(54, 54, 54, 0.6),
-    0 6px 5.3px rgba(63, 63, 63, 0.6),
-    0 12px 10px rgba(51, 50, 50, 0.6),
-    ;
+  
     
 }
 #btn{
@@ -88,24 +81,17 @@
     position:absolute;
     padding:.3rem;
     z-index:20;
-    margin-top:8rem;
+    margin-top:1rem;
     width:280px; 
     margin-left:1rem;
     text-align: center;
     border-radius:12px;
     border:inherit;
-    background-image:linear-gradient(rgba(0,0,0,.6),rgb(11, 32, 39)),url(/resources/img/mon.jpg);
+    background-image:linear-gradient(rgba(65, 100, 100, 0.6),rgb(11, 32, 39)),url(/resources/img/mon.jpg);
     background-position:center;
     background-repeat: no-repeat;
     background-size: cover;
-    box-shadow:
-    0 2px 2.3px rgba(54, 54, 54, 0.6),
-    0 5px 3.3px rgba(63, 63, 63, 0.6),
-    0 5px 5px rgba(51, 50, 50, 0.6),
-    0 102px 10.9px rgba(59, 59, 59, 0.6),
-    0 21px 23.4px rgba(75, 74, 74, 0.6),
-    0 80px 60px rgba(66, 65, 65, 0.6)
-    ;
+    
 }
 #contdata h1{
     font-size: 25px; 
@@ -136,23 +122,7 @@ border:2px solid #fff;
     color:white; 
     font-weight: bold;
 }
-label{
-    display: inline-block;
-    padding: 0 8px 0 8px; 
-    background:dodgerblue;
-    color: #fff;
-    text-align:center;
-    font-size: 25px;
-    border:1px solid dodgerblue;
-    border-radius: 5px; 
-    padding: 0px 8px 0 8px;
-}
-label:hover{
-    transition: all.5s;
-    background:dodgerblue;
-    color: #fff;
 
-}
 .doy{
     background:transparent;
     margin-top:4rem;
@@ -163,7 +133,7 @@ label:hover{
     position:absolute;
     padding:.5rem;
     z-index:20;
-    margin-top:2rem;
+    margin-top:1rem;
     width:280px; 
     margin-left:1rem;
     text-align: center;
@@ -172,20 +142,14 @@ label:hover{
     background:rgba(0, 0, 0, 0.6);
     backdrop-filter:blur(10);
     background-position:center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    box-shadow:
-    0 2px 2.3px rgba(54, 54, 54, 0.6),
-    0 6px 5.3px rgba(63, 63, 63, 0.6),
-    0 12px 10px rgba(51, 50, 50, 0.6),
-    0 22px 17.9px rgba(59, 59, 59, 0.6),
-    0 41px 33.4px rgba(75, 74, 74, 0.6),
-    0 100px 80px rgba(66, 65, 65, 0.6)
-    ;
+    margin:2rem 0px;
+    background-image:linear-gradient(rgba(65, 100, 100, 0.6),rgb(11, 32, 39)),url(/resources/img/mon.jpg);
+    
+   
 }
 #naklabels{
     text-align: center;
-    margin-top: 10px; 
+    margin-top: 3rem; 
     height: 70vh;
     overflow:auto;
     scroll-behavior: smooth;

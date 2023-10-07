@@ -87,7 +87,7 @@
     text-align: center;
     border-radius:12px;
     border:inherit;
-    background-image:linear-gradient(rgba(65, 100, 100, 0.6),rgb(11, 32, 39)),url(/resources/img/mon.jpg);
+    background-image:linear-gradient(rgba(65, 100, 100, 0.6),rgb(11, 32, 39));
     background-position:center;
     background-repeat: no-repeat;
     background-size: cover;

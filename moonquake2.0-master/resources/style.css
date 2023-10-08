@@ -9,17 +9,14 @@
     border-radius: 5px;
     border: 2px solid white;
     padding: 4px 8px 4px 8px;
-    background-color: rgba(0, 0, 0, 0.6);
     width: 265px;
+    background-color: #fff;
     margin: 0 auto;
     font-size: 24px;
     color: white;
 } 
-
-.nakEvent:hover {
-
-    background-color:#fff;
-    color:#000;
+ .nakEvent:hover{
+    color:dodgerblue;
 }
 
 .mainLabel {
@@ -66,13 +63,17 @@
 .tops{
     display:flex;
     padding:1rem;
+    font-size:15px;
     justify-content: space-between; 
     align-items: center;
     height: 100%; 
-    width:280px; 
+    width:320px; 
     text-align: center;
   
     
+}
+.tops >h2{
+margin:10px;
 }
 #btn{
     padding:6px;

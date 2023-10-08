@@ -9,17 +9,14 @@
     border-radius: 5px;
     border: 2px solid white;
     padding: 4px 8px 4px 8px;
-    background-color: rgba(0, 0, 0, 0.6);
     width: 265px;
+    background-color: #fff;
     margin: 0 auto;
     font-size: 24px;
     color: white;
 } 
-
-.nakEvent:hover {
-
-    background-color:#fff;
-    color:#000;
+ .nakEvent:hover{
+    color:dodgerblue;
 }
 
 .mainLabel {
@@ -66,13 +63,17 @@
 .tops{
     display:flex;
     padding:1rem;
+    font-size:15px;
     justify-content: space-between; 
     align-items: center;
     height: 100%; 
-    width:280px; 
+    width:320px; 
     text-align: center;
   
     
+}
+.tops >h2{
+margin:5px;
 }
 #btn{
     padding:6px;
@@ -131,6 +132,7 @@ border:2px solid #fff;
 #nakamura{
     display:none;
     position:absolute;
+    overflow-x: hidden;
     padding:.5rem;
     z-index:20;
     margin-top:1rem;
@@ -143,7 +145,11 @@ border:2px solid #fff;
     backdrop-filter:blur(10);
     background-position:center;
     margin:2rem 0px;
+<<<<<<< HEAD
     background-image:linear-gradient(rgba(65, 100, 100, 0.6),rgb(11, 32, 39));
+=======
+    background:rgba(0, 0, 0, 0.6);
+>>>>>>> 8b473478e0d5c92a9dddb5fb379149e690f7f843
     
    
 }
@@ -176,3 +182,14 @@ border:2px solid #fff;
     text-align:center; 
     padding: 4px 8px 4px 8px;
 }
+
+
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    [class*="col-"] {
+      width: 100%;
+    }
+
+     
+  }

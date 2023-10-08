@@ -26,8 +26,8 @@
           <div class="panel">
           </div>
           <div class="tops ">
-            <h2 id="con" style="box-sizing: border-box; border-bottom: 2px solid white; font-size: 24px; color: white; cursor: pointer;">Timeline</h2>
-            <h2 id="nak" style="box-sizing: border-box; font-size: 24px; color: white; cursor: pointer;">Nakamura</h2>
+            <h2 id="con" style="box-sizing: border-box; border-bottom: 2px solid white; font-size: 24px; color: white; cursor: pointer;">Fliter</h2>
+            <h2 id="nak" style="box-sizing: border-box; font-size: 24px; color: white; cursor: pointer;">Dates</h2>
           </div>
         </div>
         <!--END OF MENU-->
@@ -71,7 +71,7 @@
           </div>
             </div>
              
-            <button id="getData">Show Data</button>
+            <button class="m-0" id="getData">Show Data</button>
 
           </div>
         </div>
@@ -318,7 +318,7 @@
 </g>
 </svg>`;
        
-          let labelMark = `<div onmouseout="this.children[1].style.display = 'none';" onmouseover="this.children[1].style.display = 'block';"><div class="dangerIcon" style="width: 15px;">${marker}</div><div class="seismicdata" style="display: none;width:90px; position:absolute; top: 10px; left:6px; background-color: rgba(0, 0, 0, 0.6); border: 1px solid white;"><h4 style="font-size: 11px; color: white;">Lat: {lat}<br>Long: {long}<br>Magnitude: {magn}<br>{string}</h4></div></div>`;
+          let labelMark = `<div onmouseout="this.children[1].style.display = 'none';" onmouseover="this.children[1].style.display = 'block';"><div class="dangerIcon" style="width: 15px;">${marker}</div><div class="seismicdata bg-white p-2 rounded-ml shadow-ml shadow-slate-300" style="display: none;width:150px; position:absolute; top: 10px; left:6px;"><h4 style="font-size: 15px; color: black;">Lat: {lat}<br>Long: {long}<br>Magnitude: {magn}<br>{string}</h4></div></div>`;
 
           let years = ['1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977'];
           
@@ -442,7 +442,7 @@
               .showGraticules(false)
               .showAtmosphere(false)
               .ringsData(gData)
-              .ringColor(() => "yellow")
+              .ringColor(() => "darkgreen")
               .ringMaxRadius('maxR')
               .ringPropagationSpeed('propagationSpeed')
               .ringRepeatPeriod('repeatPeriod')
@@ -456,7 +456,7 @@
                   .replace('{magn}', d.mgn);
                 } else {
 
-                  let apolloMarks = `<div class="someclasses" svalue="${d.svalue}" onmouseout="this.children[1].style.display = 'none';" onmouseover="this.children[1].style.display = 'block';"><div class="dangerIcon" style="width: 20px;">${landingSite}</div><div class="seismicdata" style="display: none;width:90px; position:absolute; top: 10px; left:6px; background-color: rgba(0, 0, 0, 0.6); border: 1px solid white;"><h4 style="font-size: 11px; color: white;">Mission: {miss}<br>Name: {na}<br>Lat: {lat}<br>Long: {long}</h4></div></div>`;
+                  let apolloMarks = `<div class="someclasses" svalue="${d.svalue}" onmouseout="this.children[1].style.display = 'none';" onmouseover="this.children[1].style.display = 'block';"><div class="dangerIcon" style="width: 20px;">${landingSite}</div><div class="seismicdata bg-white shadow-xl shadow-slate-300 p-2 rounded-md  " style="display: none;width:150px; position:absolute; top: 10px; left:6px;"><h4 style="font-size: 15px; color: black;">Mission: {miss}<br>Name: {na}<br>Lat: {lat}<br>Long: {long}</h4></div></div>`;
 
                   el.innerHTML = apolloMarks.replace('{lat}', d.lat)
                   .replace('{long}', d.lng)

@@ -1,223 +1,231 @@
 <html>
-    <head>
 
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-        <style>
-          body {
-            margin: 0;
-          }
-        </style>
-      
-        <script src="https://unpkg.com/d3-array"></script>
-        <script src="https://unpkg.com/d3-scale"></script>
-      
-        <script src="https://unpkg.com/globe.gl"></script>
-        <!-- <script src="../../dist/globe.gl.js"></script> -->
+<head>
 
-        <link rel="stylesheet" href="resources/style.css"> 
-        <script src="https://cdn.tailwindcss.com"></script>
-    </head>
-      
-      <body>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <style>
+    body {
+      margin: 0;
+    }
+  </style>
 
-        
-        <div id="menu">
-          <div class="panel">
-          </div>
-          <div class="tops ">
-            <h2 id="con" style="box-sizing: border-box; border-bottom: 2px solid white; font-size: 24px; color: white; cursor: pointer;"
-             title="click to view Seismic events from a specific time,
+  <script src="https://unpkg.com/d3-array"></script>
+  <script src="https://unpkg.com/d3-scale"></script>
+
+  <script src="https://unpkg.com/globe.gl"></script>
+  <!-- <script src="../../dist/globe.gl.js"></script> -->
+
+  <link rel="stylesheet" href="resources/style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+
+
+  <div id="menu">
+    <div class="panel">
+    </div>
+    <div class="tops ">
+      <h2 id="con"
+        style="box-sizing: border-box; border-bottom: 2px solid white; font-size: 24px; color: white; cursor: pointer;"
+        title="click to view Seismic events from a specific time,
               and the stations with data from that date will be shown on the 
              globe that you can click on to see the seismic wave-form">Timeline</h2>
-            <h2 id="nak" style="box-sizing: border-box; font-size: 24px; color: white; cursor: pointer;">Moonquakes</h2>
+      <h2 id="nak" style="box-sizing: border-box; font-size: 24px; color: white; cursor: pointer;">Moonquakes</h2>
 
-          </div>
+    </div>
+  </div>
+  <!--END OF MENU-->
+
+  <!--MOONQUAKE MAP STARTS-->
+
+  <div id="contdata">
+    <div class="doy">
+      <h3>DATE: <label id="yearlabel" for="customRange1">1969</label> / <label id="monthlabel"
+          for="customRange1">Jan</label> / <label id="daylabel" for="customRange1">1</label></h3>
+      <div class="years">
+        <div class="head">
+          <h3 class="text-left py-2 px-4">Year </h3>
         </div>
-        <!--END OF MENU-->
+        <input id="yearslider" min="0" max="8" value="0" type="range" class="range" style="width: 80%;">
+        <div style="margin-top: 5px;">
 
-        <!--MOONQUAKE MAP STARTS-->
-
-        <div id="contdata">
-          <div class="doy">
-            <h3>DATE: <label id="yearlabel" for="customRange1">1969</label> /  <label id="monthlabel" for="customRange1">Jan</label> /  <label id="daylabel" for="customRange1" >1</label></h3>
-            <div class="years">
-              <div class="head">
-                <h3 class="text-left py-2 px-4">Year </h3>
-              </div>
-              <input id="yearslider" min="0" max="8" value="0" type="range" class="range" style="width: 80%;">
-              <div style="margin-top: 5px;">
-               
-            </div>
-            
-          
-            </div>
-
-            <div class="months">
-             <div class="head">
-              <h3 class="text-left py-4 px-4">Month</h3>
-            
-             </div>
-            <input id="monthslider" min="0" max="11" value="0" type="range" class="range" style="width: 80%;">
-            <div style="margin-top: 5px;">
-             
-            </div>
-            </div>
-
-          <div class="days">
-            <div class="head">
-              <h3 class="text-left py-4 px-4">Day</h3>
-           
-            </div>
-            <input id="dayslider" min="1" max="30" value="1" type="range" class="range" style="width: 80%;">
-            <div style="margin-top: 5px;">
-             
-          </div>
-            </div>
-             
-            <!-- <button class="m-0" id="getData">Show Data</button> -->
-
-          </div>
         </div>
-        <!--MOONQUAKES MAP ENDS-->
 
-        <!--NAKAMULA SEISMIC EVENTS STARTS-->
-        <div id="nakamura">
-        <div id="naklabels">
-            <div nakNum="0" id="nak">
-              <h3 class="nakEvent">1971, 17 April</h3>
-            </div>
 
-            <div id="nak" nakNum="1"  >
-              <h3 class="nakEvent">1971, 20 May</h3>
-            </div>
+      </div>
 
-            <div id="nak" nakNum="2"  >
-              <h3 class="nakEvent">1971, 11 July</h3>
-            </div>
+      <div class="months">
+        <div class="head">
+          <h3 class="text-left py-4 px-4">Month</h3>
 
-            <div id="nak" nakNum="3"  >
-              <h3 class="nakEvent">1972, 2 January</h3>
-            </div>
-
-            <div id="nak" nakNum="4" >
-              <h3 class="nakEvent">1972, 17 September</h3>
-            </div>
-
-            <div id="nak" nakNum="5"  >
-              <h3 class="nakEvent">1972, 06 December</h3>
-            </div>
-
-            <div id="nak" nakNum="6"  >
-              <h3 class="nakEvent">1972, 09 December</h3>
-            </div>
-
-            <div id="nak" nakNum="7">
-              <h3 class="nakEvent">1973, 08 February</h3>
-            </div>
-
-            <div id="nak" nakNum="8" >
-              <h3 class="nakEvent">1973, 13 March</h3>
-            </div>
-
-            <div id="nak" nakNum="9"  >
-              <h3 class="nakEvent">1973, 20 June</h3>
-            </div>
-
-            <div id="nak" nakNum="10">
-              <h3 class="nakEvent">1973, 01 October</h3>
-            </div>
-
-            <div id="nak" nakNum="11"  >
-              <h3 class="nakEvent">1974, 23 February</h3>
-            </div>
-
-            <div id="nak" nakNum="12"  >
-              <h3 class="nakEvent">1974, 27 March</h3>
-            </div>
-
-            <div id="nak" nakNum="13"  >
-              <h3 class="nakEvent">1974, 19 April</h3>
-            </div>
-
-            <div id="nak" nakNum="14"  >
-              <h3 class="nakEvent">1974, 29 May</h3>
-            </div>
-
-            <div id="nak" nakNum="15"  >
-              <h3 class="nakEvent">1974, 11 July</h3>
-            </div>
-
-            <div id="nak" nakNum="16">
-              <h3 class="nakEvent">1975, 03 January</h3>
-            </div>
-
-            <div id="nak" nakNum="17">
-              <h3 class="nakEvent">1975, 12 January</h3>
-            </div>
-
-            <div id="nak" nakNum="18">
-              <h3 class="nakEvent">1975, 13 January</h3>
-            </div>
-
-            <div id="nak" nakNum="19">
-              <h3 class="nakEvent">1975, 13 February</h3>
-            </div>
-
-            <div nakNum="20"  id="nak">
-              <h3 class="nakEvent">1975, 07 May</h3>
-            </div>
-
-            <div id="nak" nakNum="21">
-              <h3 class="nakEvent">1975, 27 May</h3>
-            </div>
-
-            <div id="nak" nakNum="22" >
-              <h3 class="nakEvent">1975, 10 November</h3>
-            </div>
-            <div id="nak" nakNUm="23">
-              <h3 class="nakEvent">1976, 04 January</h3>
-            </div>
-
-            <div id="nak" nakNum="24" >
-              <h3 class="nakEvent">1976, 12 January</h3>
-            </div>
-
-            <div id="nak" nakNum="25" >
-              <h3 class="nakEvent">1976, 06 March</h3>
-            </div>
-
-            <div id="nak" nakNum="26">
-              <h3 class="nakEvent">1976, 08 March</h3>
-            </div>
-
-            <div id="nak" nakNum="27">
-              <h3 class="nakEvent">1976, 16 May</h3>
-            </div>
-          </div>
-          <button id="clearMap">Clear Map</button>
-          <button id="showAll">ShowAll</button>
         </div>
-        <!--NAKAMULA SEISMIC EVENTS STARTS-->
+        <input id="monthslider" min="0" max="11" value="0" type="range" class="range" style="width: 80%;">
+        <div style="margin-top: 5px;">
 
-        <div id="cont" style="display: none;position:absolute; 
+        </div>
+      </div>
+
+      <div class="days">
+        <div class="head">
+          <h3 class="text-left py-4 px-4">Day</h3>
+
+        </div>
+        <input id="dayslider" min="1" max="30" value="1" type="range" class="range" style="width: 80%;">
+        <div style="margin-top: 5px;">
+
+        </div>
+      </div>
+
+      <!-- <button class="m-0" id="getData">Show Data</button> -->
+
+    </div>
+  </div>
+  <!--MOONQUAKES MAP ENDS-->
+
+  <!--NAKAMULA SEISMIC EVENTS STARTS-->
+  <div id="nakamura">
+    <div id="naklabels">
+      <div nakNum="0" id="nak">
+        <h3 class="nakEvent">1971, 17 April</h3>
+      </div>
+
+      <div id="nak" nakNum="1">
+        <h3 class="nakEvent">1971, 20 May</h3>
+      </div>
+
+      <div id="nak" nakNum="2">
+        <h3 class="nakEvent">1971, 11 July</h3>
+      </div>
+
+      <div id="nak" nakNum="3">
+        <h3 class="nakEvent">1972, 2 January</h3>
+      </div>
+
+      <div id="nak" nakNum="4">
+        <h3 class="nakEvent">1972, 17 September</h3>
+      </div>
+
+      <div id="nak" nakNum="5">
+        <h3 class="nakEvent">1972, 06 December</h3>
+      </div>
+
+      <div id="nak" nakNum="6">
+        <h3 class="nakEvent">1972, 09 December</h3>
+      </div>
+
+      <div id="nak" nakNum="7">
+        <h3 class="nakEvent">1973, 08 February</h3>
+      </div>
+
+      <div id="nak" nakNum="8">
+        <h3 class="nakEvent">1973, 13 March</h3>
+      </div>
+
+      <div id="nak" nakNum="9">
+        <h3 class="nakEvent">1973, 20 June</h3>
+      </div>
+
+      <div id="nak" nakNum="10">
+        <h3 class="nakEvent">1973, 01 October</h3>
+      </div>
+
+      <div id="nak" nakNum="11">
+        <h3 class="nakEvent">1974, 23 February</h3>
+      </div>
+
+      <div id="nak" nakNum="12">
+        <h3 class="nakEvent">1974, 27 March</h3>
+      </div>
+
+      <div id="nak" nakNum="13">
+        <h3 class="nakEvent">1974, 19 April</h3>
+      </div>
+
+      <div id="nak" nakNum="14">
+        <h3 class="nakEvent">1974, 29 May</h3>
+      </div>
+
+      <div id="nak" nakNum="15">
+        <h3 class="nakEvent">1974, 11 July</h3>
+      </div>
+
+      <div id="nak" nakNum="16">
+        <h3 class="nakEvent">1975, 03 January</h3>
+      </div>
+
+      <div id="nak" nakNum="17">
+        <h3 class="nakEvent">1975, 12 January</h3>
+      </div>
+
+      <div id="nak" nakNum="18">
+        <h3 class="nakEvent">1975, 13 January</h3>
+      </div>
+
+      <div id="nak" nakNum="19">
+        <h3 class="nakEvent">1975, 13 February</h3>
+      </div>
+
+      <div nakNum="20" id="nak">
+        <h3 class="nakEvent">1975, 07 May</h3>
+      </div>
+
+      <div id="nak" nakNum="21">
+        <h3 class="nakEvent">1975, 27 May</h3>
+      </div>
+
+      <div id="nak" nakNum="22">
+        <h3 class="nakEvent">1975, 10 November</h3>
+      </div>
+      <div id="nak" nakNUm="23">
+        <h3 class="nakEvent">1976, 04 January</h3>
+      </div>
+
+      <div id="nak" nakNum="24">
+        <h3 class="nakEvent">1976, 12 January</h3>
+      </div>
+
+      <div id="nak" nakNum="25">
+        <h3 class="nakEvent">1976, 06 March</h3>
+      </div>
+
+      <div id="nak" nakNum="26">
+        <h3 class="nakEvent">1976, 08 March</h3>
+      </div>
+
+      <div id="nak" nakNum="27">
+        <h3 class="nakEvent">1976, 16 May</h3>
+      </div>
+    </div>
+    <button id="clearMap">Clear Map</button>
+    <button id="showAll">ShowAll</button>
+  </div>
+  <!--NAKAMULA SEISMIC EVENTS STARTS-->
+
+  <div id="cont" style="display: none;position:absolute; 
         height: 600px; overflow-y: scroll;
         right: 5px; top:5px; z-index:20; background-color: rgba(200, 255, 255, 0.6)">
-          <div class="head" style="display: flex; background-color: dodgerblue;  position: sticky; top: 0px;">
-            <h3 id="sem" style="overflow-block: clip; color: white;"></h3>
-            <div style="position: absolute; right:5px; cursor: pointer; color: red;" 
-          id="x"
-          onclick="document.getElementById('cont').style.display = 'none';">
-            <svg width="24px" height="24px"  viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5.72 5.72a.75.75 0 011.06 0L12 10.94l5.22-5.22a.75.75 0 111.06 1.06L13.06 12l5.22 5.22a.75.75 0 11-1.06 1.06L12 13.06l-5.22 5.22a.75.75 0 01-1.06-1.06L10.94 12 5.72 6.78a.75.75 0 010-1.06z"/></svg>
-          </div>
-          </div>
-          <img id="plots" src="" alt="" style="width:650px;">
-        </div>
+    <div class="head" style="display: flex; background-color: dodgerblue;  position: sticky; top: 0px;">
+      <h3 id="sem" style="overflow-block: clip; color: white;"></h3>
+      <div style="position: absolute; right:5px; cursor: pointer; color: red;" id="x"
+        onclick="document.getElementById('cont').style.display = 'none';">
+        <svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd"
+            d="M5.72 5.72a.75.75 0 011.06 0L12 10.94l5.22-5.22a.75.75 0 111.06 1.06L13.06 12l5.22 5.22a.75.75 0 11-1.06 1.06L12 13.06l-5.22 5.22a.75.75 0 01-1.06-1.06L10.94 12 5.72 6.78a.75.75 0 010-1.06z" />
+        </svg>
+      </div>
+    </div>
+    <img id="plots" src="" alt="" style="width:650px;">
+  </div>
 
 
-        <script>
+  <script>
 
-          let marker = `<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+    let marker = `<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
 <path style="fill:#FF9900;" d="M507.494,426.066L282.864,53.536c-5.677-9.415-15.87-15.172-26.865-15.172
 	c-10.994,0-21.188,5.756-26.865,15.172L4.506,426.066c-5.842,9.689-6.015,21.774-0.451,31.625
@@ -268,12 +276,15 @@
 </svg>`;
 
 
-          let landingSite = `<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+    let landingSite = `<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 511.999 511.999" style="enable-background:new 0 0 511.999 511.999;" xml:space="preserve">
 <polygon style="fill:#C8F4DE;" points="500.881,351.23 11.119,351.23 38.328,296.812 473.671,296.812 "/>
 <polygon style="fill:#4A7DBA;" points="392.044,24.722 233.761,24.722 167.047,24.722 119.954,24.722 79.142,254.952 
 	79.142,296.812 432.858,296.812 432.858,254.952 "/>
-<circle style="fill:#87DFD6;" cx="257.117" cy="160.77" r="54.418"/>
+<circle style="fill:#87DFD6;" cx="257.117" cy="160.77"May
+1974, 11 July
+1975, 03 January
+ r="54.418"/>
 <path d="M190.141,28.981c0.278,0.667,0.623,1.312,1.023,1.912c0.4,0.612,0.867,1.179,1.379,1.69c0.511,0.511,1.079,0.978,1.69,1.379
 	c0.6,0.4,1.245,0.745,1.924,1.023c0.667,0.289,1.368,0.5,2.079,0.645s1.445,0.211,2.168,0.211s1.457-0.068,2.168-0.211
 	c0.712-0.145,1.412-0.356,2.09-0.645c0.667-0.278,1.312-0.623,1.912-1.023c0.612-0.4,1.179-0.867,1.69-1.379
@@ -328,399 +339,392 @@
 <g>
 </g>
 </svg>`;
-       
-          let labelMark = `<div onmouseout="this.children[1].style.display = 'none';" onmouseover="this.children[1].style.display = 'block';"><div class="dangerIcon" style="width: 15px;">${marker}</div><div class="seismicdata bg-white p-2 rounded-ml shadow-ml shadow-slate-300" style="display: none;width:150px; position:absolute; top: 10px; left:6px;"><h4 style="font-size: 15px; color: black;">Lat: {lat}<br>Long: {long}<br>Magnitude: {magn}<br>{string}</h4></div></div>`;
 
-          // let years = ['1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977'];
-          
-          // let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-          // document.getElementById('yearslider').addEventListener('input', (event) => {
-
-          //   document.getElementById('yearlabel').innerText = years[event.target.value];
-
-          //   let curYear = parseInt(event.target.value) + 1969;
-
-          //   let currMonth = parseInt(document.getElementById('monthslider').value);
-
-          //   let date = new Date(curYear, currMonth+1, 0);
-
-          //   let dayslider = document.getElementById('dayslider');
-
-          //   dayslider.setAttribute('max', date.getDate());
-          //   dayslider.value = 1;
-          //   document.getElementById('daylabel').innerText = 1;
-
-          // });
-
-          // document.getElementById('monthslider').addEventListener('input', (event) => {
+    let labelMark = `<div onmouseout="this.children[1].style.display = 'none';" onmouseover="this.children[1].style.display = 'block';"><div class="dangerIcon" style="width: 15px;">${marker}</div><div class="seismicdata bg-white p-2 rounded-ml shadow-ml shadow-slate-300" style="display: none;width:150px; position:absolute; top: 10px; left:6px;"><h4 style="font-size: 15px; color: black;">Lat: {lat}<br>Long: {long}<br>Magnitude: {magn}<br>{string}</h4></div></div>`;
 
 
-          //   document.getElementById('monthlabel').innerText = months[event.target.value];
+  </script>
 
-          //   let curYear = parseInt(document.getElementById('yearslider').value) + 1969;
-            
-          //   let currMonth = parseInt(document.getElementById('monthslider').value);
+  <div id="globeViz"></div>
 
-          //   let date = new Date(curYear, currMonth+1, 0);
+  <script>
+    const colorScale = d3.scaleOrdinal(['orangered', 'mediumblue', 'darkgreen', 'yellow']);
 
-          //   let dayslider = document.getElementById('dayslider');
+    const labelsTopOrientation = new Set(['Apollo 12', 'Luna 2', 'Luna 20', 'Luna 21', 'Luna 24', 'LCROSS Probe']); // avoid label collisions
 
-          //   dayslider.setAttribute('max', date.getDate());
-          //   dayslider.value = 1;
-          //   document.getElementById('daylabel').innerText = 1;
-            
+    const elem = document.getElementById('globeViz');
 
-          //   getReqDate()
-          // });
+    let gData = [];
 
-          // document.getElementById('dayslider').addEventListener('input', (event) => {
-          //   document.getElementById('daylabel').innerText = event.target.value;
-            
-          // });
+    let markdata = [];
 
-          
-        </script>
-      
-        <div id="globeViz"></div>
-      
-        <script>
-          const colorScale = d3.scaleOrdinal(['orangered', 'mediumblue', 'darkgreen', 'yellow']);
-      
-          const labelsTopOrientation = new Set(['Apollo 12', 'Luna 2', 'Luna 20', 'Luna 21', 'Luna 24', 'LCROSS Probe']); // avoid label collisions
-      
-          const elem = document.getElementById('globeViz');
+    let apolloSeismic;
 
-          let gData = [];
-
-          let markdata = [];
-
-          let apolloSeismic;
-
-          let plot_data;
-
-  
-          let nakaData;
+    let plot_data;
 
 
-          let selectedYear;
-          let selectedMonth;
-          let selectedDay;
+    let nakaData;
 
-          let globDict;
-		
-	  let moonland_data;
 
-          async function getData() {
+    let selectedYear;
+    let selectedMonth;
+    let selectedDay;
 
-            let naka = await fetch('./resources/cleanedData.json');
+    let globDict;
 
-            nakaData = await naka.json();
+    let moonland_data;
 
-            let apollo = await fetch('./resources/Apollo_seismic_network.json');
+    async function getData() {
 
-            apolloSeismic = await apollo.json();
+      let naka = await fetch('./resources/cleanedData.json');
 
-            let plots = await fetch('./plots/plot_dict.json');
+      nakaData = await naka.json();
 
-            plot_data = await plots.json();
-		  
-	    let moonlandings = await fetch('./resources/moon_lands.json');
+      let apollo = await fetch('./resources/Apollo_seismic_network.json');
 
-            moonland_data = await moonlandings.json();
+      apolloSeismic = await apollo.json();
 
-            for (let index = 0; index < apolloSeismic.length; index++) {
-              
-              markdata.push({
-                nak: false,
-                lat: apolloSeismic[index].lat,
-                lng: apolloSeismic[index].lng,
-                mission: apolloSeismic[index].mission,
-                name: apolloSeismic[index].name,
-                svalue: `s${apolloSeismic[index].mission.split(' ')[1]}`
-              });
+      let plots = await fetch('./plots/plot_dict.json');
 
-            }
+      plot_data = await plots.json();
 
-            start();
+      let moonlandings = await fetch('./resources/moon_lands.json');
 
+      moonland_data = await moonlandings.json();
+
+      for (let index = 0; index < apolloSeismic.length; index++) {
+
+        markdata.push({
+          nak: false,
+          lat: apolloSeismic[index].lat,
+          lng: apolloSeismic[index].lng,
+          mission: apolloSeismic[index].mission,
+          name: apolloSeismic[index].name,
+          svalue: `s${apolloSeismic[index].mission.split(' ')[1]}`
+        });
+
+      }
+
+      start();
+
+    }
+
+    function start() {
+
+      const moon = Globe()
+        .globeImageUrl('./resources/lunar_surface.jpg')
+        .bumpImageUrl('./resources/lunar_bumpmap.jpg')
+        .backgroundImageUrl('https://unpkg.com/three-globe@2.24.7/example/img/night-sky.png')
+        .showGraticules(false)
+        .showAtmosphere(false)
+        .ringsData(gData)
+        .ringColor(() => "orangered")
+        .ringMaxRadius('maxR')
+        .ringPropagationSpeed('propagationSpeed')
+        .ringRepeatPeriod('repeatPeriod')
+        .htmlElementsData(markdata)
+        .htmlElement(d => {
+          const el = document.createElement('div');
+
+          if (d.nak) {
+            el.innerHTML = labelMark.replace('{string}', new Date(d.year, d.month, d.day).toDateString()).replace('{lat}', d.lat)
+              .replace('{long}', d.lng)
+              .replace('{magn}', d.mgn);
+          } else {
+
+            let apolloMarks = `<div class="someclasses" svalue="${d.svalue}" onmouseout="this.children[1].style.display = 'none';" onmouseover="this.children[1].style.display = 'block';"><div class="dangerIcon" style="width: 20px;">${landingSite}</div><div class="seismicdata bg-white shadow-xl shadow-slate-300 p-2 rounded-md  " style="display: none;width:150px; position:absolute; top: 10px; left:6px;"><h4 style="font-size: 15px; color: black;">Mission: {miss}<br>Name: {na}<br>Lat: {lat}<br>Long: {long}</h4></div></div>`;
+
+            el.innerHTML = apolloMarks.replace('{lat}', d.lat)
+              .replace('{long}', d.lng)
+              .replace('{miss}', d.mission)
+              .replace('{na}', d.name);
           }
 
-          function start() {
-               
-            const moon = Globe()
-              .globeImageUrl('./resources/lunar_surface.jpg')
-              .bumpImageUrl('./resources/lunar_bumpmap.jpg')
-              .backgroundImageUrl('https://unpkg.com/three-globe@2.24.7/example/img/night-sky.png')
-              .showGraticules(false)
-              .showAtmosphere(false)
-              .ringsData(gData)
-              .ringColor(() => "orangered")
-              .ringMaxRadius('maxR')
-              .ringPropagationSpeed('propagationSpeed')
-              .ringRepeatPeriod('repeatPeriod')
-              .htmlElementsData(markdata)
-              .htmlElement(d => {
-                const el = document.createElement('div');
+          el.style['pointer-events'] = 'auto';
+          el.style.cursor = 'pointer';
+          el.onclick = (event) => {
 
-                if (d.nak) {
-                  el.innerHTML = labelMark.replace('{string}', new Date(d.year, d.month, d.day).toDateString()).replace('{lat}', d.lat)
-                  .replace('{long}', d.lng)
-                  .replace('{magn}', d.mgn);
-                } else {
+            let stationNum = event.currentTarget.children[0].getAttribute("svalue");
 
-                  let apolloMarks = `<div class="someclasses" svalue="${d.svalue}" onmouseout="this.children[1].style.display = 'none';" onmouseover="this.children[1].style.display = 'block';"><div class="dangerIcon" style="width: 20px;">${landingSite}</div><div class="seismicdata bg-white shadow-xl shadow-slate-300 p-2 rounded-md  " style="display: none;width:150px; position:absolute; top: 10px; left:6px;"><h4 style="font-size: 15px; color: black;">Mission: {miss}<br>Name: {na}<br>Lat: {lat}<br>Long: {long}</h4></div></div>`;
+            if (globDict.stations.includes(stationNum)) {
 
-                  el.innerHTML = apolloMarks.replace('{lat}', d.lat)
-                  .replace('{long}', d.lng)
-                  .replace('{miss}', d.mission)
-                  .replace('{na}', d.name);
-                }
-                              
-                el.style['pointer-events'] = 'auto';
-                el.style.cursor = 'pointer';
-                el.onclick = (event) => {
-                 
-                  let stationNum = event.currentTarget.children[0].getAttribute("svalue");
+              let filePath = `./plots/${stationNum}/${selectedYear}/${globDict.doy}/${stationNum}_${selectedYear}_${globDict.doy}_mh_plot.png`;
 
-                  if (globDict.stations.includes(stationNum)) {
+              let title = `<b>Seismic wave-form </b> <b>Mission:</b> Apollo-${(stationNum === 's11') ? '11'
+                  : (stationNum === 's12') ? '12'
+                    : (stationNum === 's14') ? '14'
+                      : (stationNum === 's15') ? '15'
+                        : 's16'
+                }  <b>Date:</b> ${selectedDay}-${selectedMonth}-${selectedYear}`;
 
-                    let filePath = `./plots/${stationNum}/${selectedYear}/${globDict.doy}/${stationNum}_${selectedYear}_${globDict.doy}_mh_plot.png`;
-
-                    let title = `<b>Seismic wave-form </b> <b>Mission:</b> Apollo-${
-                      (stationNum==='s11')?'11'
-                      :(stationNum==='s12')?'12'
-                      :(stationNum==='s14')?'14'
-                      :(stationNum==='s15')?'15'
-                      :'s16'
-                    }  <b>Date:</b> ${selectedDay}-${selectedMonth}-${selectedYear}`;
-                    
-                    document.getElementById('sem').innerHTML = title;
-                    document.getElementById('plots').src = filePath;
-                    document.getElementById('cont').style.display = "block";
-
-                  }
-
-                };
-                return el;
-              })
-	      .labelText('label')
-              .labelSize(2.0)
-              .labelDotRadius(0.6)
-              .labelDotOrientation(d => labelsTopOrientation.has(d.label) ? 'top' : 'bottom')
-              .labelColor(d => "lightskyblue")
-              .labelsData(moonland_data)
-              (document.getElementById('globeViz'));
-          
-            const colorInterpolator = t => `rgba(255,100,50,${Math.sqrt(1 - t)})`;
-
-            function clearTab(event) {
-              document.getElementById('contdata').style.display = 'none';
-              document.getElementById('nakamura').style.display = 'block';
-              document.getElementById('con').style.borderBottom = 'none';
-              document.getElementById('nak').style.borderBottom = '2px solid white';
-		    
-	      let divs = document.querySelectorAll('.nakEvent');
-
-              for (const child of divs) {
-              	child.style.backgroundColor = "rgba(0, 0, 0, 0.6)";
-              
-              }
-
-              markdata = [];
-
-              gData = [];
-              
-              moon.ringsData([]);
-              moon.htmlElementsData([]);
+              document.getElementById('sem').innerHTML = title;
+              document.getElementById('plots').src = filePath;
+              document.getElementById('cont').style.display = "block";
 
             }
 
-            function getReqDate() {
+          };
+          return el;
+        })
+        .labelText('label')
+        .labelSize(2.0)
+        .labelDotRadius(0.6)
+        .labelDotOrientation(d => labelsTopOrientation.has(d.label) ? 'top' : 'bottom')
+        .labelColor(d => "lightskyblue")
+        .labelsData(moonland_data)
+        (document.getElementById('globeViz'));
 
-              selectedYear = parseInt(document.getElementById('yearslider').value) + 1969;
+      const colorInterpolator = t => `rgba(255,100,50,${Math.sqrt(1 - t)})`;
 
-              selectedMonth = parseInt(document.getElementById('monthslider').value) + 1;
+      function clearTab(event) {
+        document.getElementById('contdata').style.display = 'none';
+        document.getElementById('nakamura').style.display = 'block';
+        document.getElementById('con').style.borderBottom = 'none';
+        document.getElementById('nak').style.borderBottom = '2px solid white';
 
-              selectedDay = parseInt(document.getElementById('dayslider').value);
+        let divs = document.querySelectorAll('.nakEvent');
 
-              globDict = plot_data[selectedYear][selectedMonth][selectedDay];
-		    
-	      markdata = []
+        for (const child of divs) {
+          child.style.backgroundColor = "rgba(0, 0, 0, 0.6)";
 
-              for (let index = 0; index < apolloSeismic.length; index++) {
+        }
 
-              
-                if (globDict.stations.includes(`s${apolloSeismic[index].mission.split(' ')[1]}`)) {
-                    markdata.push({
-                    nak: false,
-                    lat: apolloSeismic[index].lat,
-                    lng: apolloSeismic[index].lng,
-                    mission: apolloSeismic[index].mission,
-                    name: apolloSeismic[index].name,
-                    svalue: `s${apolloSeismic[index].mission.split(' ')[1]}`
-                  });
-                }
-                
-              }
+        markdata = [];
 
-              moon.htmlElementsData(markdata);
-              
-            }
+        gData = [];
 
-//------------------
+        moon.ringsData([]);
+        moon.htmlElementsData([]);
 
-            let years = ['1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977'];
-          
-          let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      }
 
-          document.getElementById('yearslider').addEventListener('input', (event) => {
+      function getReqDate() {
 
-            document.getElementById('yearlabel').innerText = years[event.target.value];
+        selectedYear = parseInt(document.getElementById('yearslider').value) + 1969;
 
-            let curYear = parseInt(event.target.value) + 1969;
+        selectedMonth = parseInt(document.getElementById('monthslider').value) + 1;
 
-            let currMonth = parseInt(document.getElementById('monthslider').value);
+        selectedDay = parseInt(document.getElementById('dayslider').value);
 
-            let date = new Date(curYear, currMonth+1, 0);
+        globDict = plot_data[selectedYear][selectedMonth][selectedDay];
 
-            let dayslider = document.getElementById('dayslider');
+        markdata = []
 
-            dayslider.setAttribute('max', date.getDate());
-            dayslider.value = 1;
-            document.getElementById('daylabel').innerText = 1;
-
-            getReqDate()
-
-          });
-
-          document.getElementById('monthslider').addEventListener('input', (event) => {
+        for (let index = 0; index < apolloSeismic.length; index++) {
 
 
-            document.getElementById('monthlabel').innerText = months[event.target.value];
-
-            let curYear = parseInt(document.getElementById('yearslider').value) + 1969;
-            
-            let currMonth = parseInt(document.getElementById('monthslider').value);
-
-            let date = new Date(curYear, currMonth+1, 0);
-
-            let dayslider = document.getElementById('dayslider');
-
-            dayslider.setAttribute('max', date.getDate());
-            dayslider.value = 1;
-            document.getElementById('daylabel').innerText = 1;
-            
-
-            getReqDate()
-          });
-
-          document.getElementById('dayslider').addEventListener('input', (event) => {
-            document.getElementById('daylabel').innerText = event.target.value;
-            getReqDate()
-          });
-
-
-//------------------
-
-
-            // document.getElementById('getData').addEventListener('click', getReqDate);
-
-            document.getElementById('nak').addEventListener('click', clearTab);
-
-
-            document.getElementById('clearMap').addEventListener('click', (event) => {
-
-              markdata = [];
-
-              gData = [];
-              
-              moon.ringsData([]);
-              moon.htmlElementsData([]);
-
-              let divs = document.querySelectorAll('.nakEvent');
-
-              for (const child of divs) {
-              child.style.backgroundColor = "rgba(0, 0, 0, 0.6)";
-              
-            }
-
+          if (globDict.stations.includes(`s${apolloSeismic[index].mission.split(' ')[1]}`)) {
+            markdata.push({
+              nak: false,
+              lat: apolloSeismic[index].lat,
+              lng: apolloSeismic[index].lng,
+              mission: apolloSeismic[index].mission,
+              name: apolloSeismic[index].name,
+              svalue: `s${apolloSeismic[index].mission.split(' ')[1]}`
             });
-
-            
-
-            document.getElementById('con').addEventListener('click', (event) => {
-              document.getElementById('nakamura').style.display = 'none';
-              document.getElementById('contdata').style.display = 'block';
-              document.getElementById('nak').style.borderBottom = 'none';
-              document.getElementById('con').style.borderBottom = '2px solid white';
-
-              markdata = [];
-	      gData = [];
-		
-
-              for (let index = 0; index < apolloSeismic.length; index++) {
-              
-                markdata.push({
-		nak: false,
-		lat: apolloSeismic[index].lat,
-		lng: apolloSeismic[index].lng,
-		mission: apolloSeismic[index].mission,
-		name: apolloSeismic[index].name,
-		svalue: `s${apolloSeismic[index].mission.split(' ')[1]}`
-	      });
-
-              }
-
-             moon.htmlElementsData(markdata);
-	     moon.ringsData(gData);
-        
-            });
-
-
-            function showNaka(event) {
-              let index = event.currentTarget.getAttribute("nakNum");
-
-              event.currentTarget.children[0].style.backgroundColor = 'rgba(192, 192, 192, 0.6)';
-
-              
-                markdata.push({
-                  nak: true,
-                  lat: nakaData[index].lat,
-                  lng: nakaData[index].long,
-                  size: nakaData[index].magn * 10,
-                  year: nakaData[index].year,
-                  day: nakaData[index].day,
-                  month: nakaData[index].month,
-                  mgn: nakaData[index].magn,
-                });
-              
-                gData.push({
-                  lat: nakaData[index].lat,
-                  lng: nakaData[index].long,
-                  maxR: nakaData[index].magn * 7,
-                  propagationSpeed: 5,
-                  repeatPeriod: 500
-                })
-
-              moon.htmlElementsData(markdata);
-              moon.ringsData(gData);
-
-            }
-
-            let naks = document.getElementById('naklabels');
-            
-
-            for (const child of naks.children) {
-              child.style.cursor = "pointer";
-              child.addEventListener('click', showNaka);
-            }
-      
           }
 
-          
-          getData();
-          
-        </script>
-      </body>
+        }
+
+        moon.htmlElementsData(markdata);
+
+      }
+
+      //------------------
+
+      let years = ['1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977'];
+
+      let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+      document.getElementById('yearslider').addEventListener('input', (event) => {
+
+        document.getElementById('yearlabel').innerText = years[event.target.value];
+
+        let curYear = parseInt(event.target.value) + 1969;
+
+        let currMonth = parseInt(document.getElementById('monthslider').value);
+
+        let date = new Date(curYear, currMonth + 1, 0);
+
+        let dayslider = document.getElementById('dayslider');
+
+        dayslider.setAttribute('max', date.getDate());
+        dayslider.value = 1;
+        document.getElementById('daylabel').innerText = 1;
+
+        getReqDate()
+
+      });
+
+      document.getElementById('monthslider').addEventListener('input', (event) => {
+
+
+        document.getElementById('monthlabel').innerText = months[event.target.value];
+
+        let curYear = parseInt(document.getElementById('yearslider').value) + 1969;
+
+        let currMonth = parseInt(document.getElementById('monthslider').value);
+
+        let date = new Date(curYear, currMonth + 1, 0);
+
+        let dayslider = document.getElementById('dayslider');
+
+        dayslider.setAttribute('max', date.getDate());
+        dayslider.value = 1;
+        document.getElementById('daylabel').innerText = 1;
+
+
+        getReqDate()
+      });
+
+      document.getElementById('dayslider').addEventListener('input', (event) => {
+        document.getElementById('daylabel').innerText = event.target.value;
+        getReqDate()
+      });
+
+
+      //------------------
+
+
+      // document.getElementById('getData').addEventListener('click', getReqDate);
+
+      document.getElementById('nak').addEventListener('click', clearTab);
+
+
+      document.getElementById('clearMap').addEventListener('click', (event) => {
+
+        markdata = [];
+
+        gData = [];
+
+        moon.ringsData([]);
+        moon.htmlElementsData([]);
+
+        let divs = document.querySelectorAll('.nakEvent');
+
+        for (const child of divs) {
+          child.style.backgroundColor = "rgba(0, 0, 0, 0.6)";
+
+        }
+
+      });
+
+
+
+      document.getElementById('con').addEventListener('click', (event) => {
+        document.getElementById('nakamura').style.display = 'none';
+        document.getElementById('contdata').style.display = 'block';
+        document.getElementById('nak').style.borderBottom = 'none';
+        document.getElementById('con').style.borderBottom = '2px solid white';
+
+        markdata = [];
+        gData = [];
+
+
+        for (let index = 0; index < apolloSeismic.length; index++) {
+
+          markdata.push({
+            nak: false,
+            lat: apolloSeismic[index].lat,
+            lng: apolloSeismic[index].lng,
+            mission: apolloSeismic[index].mission,
+            name: apolloSeismic[index].name,
+            svalue: `s${apolloSeismic[index].mission.split(' ')[1]}`
+          });
+
+        }
+
+        moon.htmlElementsData(markdata);
+        moon.ringsData(gData);
+
+      });
+
+
+      function showNaka(event) {
+        let index = event.currentTarget.getAttribute("nakNum");
+
+        event.currentTarget.children[0].style.backgroundColor = 'rgba(192, 192, 192, 0.6)';
+
+
+        markdata.push({
+          nak: true,
+          lat: nakaData[index].lat,
+          lng: nakaData[index].long,
+          size: nakaData[index].magn * 10,
+          year: nakaData[index].year,
+          day: nakaData[index].day,
+          month: nakaData[index].month,
+          mgn: nakaData[index].magn,
+        });
+
+        gData.push({
+          lat: nakaData[index].lat,
+          lng: nakaData[index].long,
+          maxR: nakaData[index].magn * 7,
+          propagationSpeed: 5,
+          repeatPeriod: 500
+        })
+
+        moon.htmlElementsData(markdata);
+        moon.ringsData(gData);
+
+      }
+
+
+      //added to show all naka events
+      function showNakaAll(event) {
+        let naks = document.getElementById('naklabels');
+
+
+        for (const child of naks.children) {
+          child.children[0].style.backgroundColor = 'rgba(192, 192, 192, 0.6)';
+
+        }
+
+        for (let index = 0; index < nakaData.length; index++) {
+
+
+
+          markdata.push({
+            nak: true,
+            lat: nakaData[index].lat,
+            lng: nakaData[index].long,
+            size: nakaData[index].magn * 10,
+            year: nakaData[index].year,
+            day: nakaData[index].day,
+            month: nakaData[index].month,
+            mgn: nakaData[index].magn,
+          });
+
+          gData.push({
+            lat: nakaData[index].lat,
+            lng: nakaData[index].long,
+            maxR: nakaData[index].magn * 7,
+            propagationSpeed: 5,
+            repeatPeriod: 500
+          })
+
+          moon.htmlElementsData(markdata);
+          moon.ringsData(gData);
+        }
+      }
+
+      document.getElementById('showAll').addEventListener('click', showNakaAll);
+
+      let naks = document.getElementById('naklabels');
+
+
+      for (const child of naks.children) {
+        child.style.cursor = "pointer";
+        child.addEventListener('click', showNaka);
+      }
+
+    }
+
+
+    getData();
+
+  </script>
+</body>
+
 </html>
